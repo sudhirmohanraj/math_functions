@@ -1,12 +1,10 @@
-package com.programmin.dev.math_functions.factory;
+package com.programming.dev.math_functions.factory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * Interface for utilities in math most commonly used.
- * mohanraj,sudhir
+ * Interface for utilities in math most commonly used. mohanraj,sudhir
  */
 public interface MathFunctions {
 
@@ -14,6 +12,9 @@ public interface MathFunctions {
 			com.programming.dev.math_functions.util.LinkedList linkedList);
 
 	public abstract Long FindDuplicateInArray(List<Integer> arrayNumbers);
-	
+
 	public abstract String reverseString(String input);
+
+	public abstract List<String> removeDuplicateMaintainOrder(
+			List<String> arrayWithDuplicates);
 }

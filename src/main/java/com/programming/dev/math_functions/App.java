@@ -1,6 +1,7 @@
 package com.programming.dev.math_functions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,8 +54,21 @@ public class App {
 				duplicate));
 
 		// reverse a string
-		String reversedString = mathFunctionsImpl.reverseString("today");
-		LOGGER.debug(String.format("this is the reversed string",
-				reversedString));
+		/*
+		 * String reversedString = mathFunctionsImpl.reverseString("today");
+		 * LOGGER.debug(String.format("this is the reversed string",
+		 * reversedString));
+		 */
+		List<String> inputArrayList = new ArrayList<String>();
+		List<String> outputArrayList = new ArrayList<String>();
+		inputArrayList.add("devon");
+		inputArrayList.add("sudhir");
+		inputArrayList.add("devon");
+		inputArrayList.add("ashok");
+		inputArrayList.add("ericka");
+		outputArrayList = mathFunctionsImpl
+				.removeDuplicateMaintainOrder(inputArrayList);
+		System.out.println("log the outputarray");
+
 	}
 }

@@ -1,10 +1,12 @@
 package com.programming.dev.math_functions.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
-import com.programmin.dev.math_functions.factory.MathFunctions;
+import com.programming.dev.math_functions.factory.MathFunctions;
 
 /**
  * Implementation for {@link MathFunctions}
@@ -51,9 +53,26 @@ public class MathFunctionsImpl implements MathFunctions {
 		if (input.length() < 2) {
 			return input;
 		}
-//		String temp = input.substring(1);
-//		char temp1 = input.charAt(0);
+		// String temp = input.substring(1);
+		// char temp1 = input.charAt(0);
 		return reverseString(input.substring(1) + input.charAt(0));
+	}
+
+	public List<String> removeDuplicateMaintainOrder(
+			List<String> inputArrayList) {
+		if (inputArrayList.size() == 0) {
+			return new ArrayList<String>();
+		} else {
+			List<String> outputList = new ArrayList<String>();
+			Set<String> storageSet = new HashSet<String>();
+			boolean result;
+			for (String elements : inputArrayList) {
+				if(storageSet.add(elements)){
+					outputList.add(elements);
+				}
+			}
+			return outputList;
+		}
 	}
 
 }
