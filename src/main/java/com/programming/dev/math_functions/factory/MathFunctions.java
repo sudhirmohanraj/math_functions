@@ -8,13 +8,13 @@ import java.util.List;
  */
 public interface MathFunctions {
 
-	public abstract int MiddleElementLinkedList(
-			com.programming.dev.math_functions.util.LinkedList linkedList);
+    public abstract int MiddleElementLinkedList(com.programming.dev.math_functions.util.LinkedList linkedList);
 
-	public abstract Long FindDuplicateInArray(List<Integer> arrayNumbers);
+    public abstract Long FindDuplicateInArray(List<Integer> arrayNumbers);
 
-	public abstract String reverseString(String input);
+    public abstract String reverseString(String input);
 
-	public abstract List<String> removeDuplicateMaintainOrder(
-			List<String> arrayWithDuplicates);
+    public abstract List<String> removeDuplicateMaintainOrder(List<String> arrayWithDuplicates);
+
+    public abstract int LargestContinuousSum(ArrayList<Integer> input);
 }
