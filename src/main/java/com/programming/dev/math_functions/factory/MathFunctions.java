@@ -16,5 +16,5 @@ public interface MathFunctions {
 
     public abstract List<String> removeDuplicateMaintainOrder(List<String> arrayWithDuplicates);
 
-    public abstract int LargestContinuousSum(ArrayList<Integer> input);
+    public abstract ArrayList<Integer> LargestContinuousSum(ArrayList<Integer> input);
 }

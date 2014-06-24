@@ -60,7 +60,8 @@ public class App {
         input.add(2);
         input.add(0);
         input.add(4);
-        final int output = mathFunctionsImpl.LargestContinuousSum(input);
+        ArrayList<Integer> output = new ArrayList<Integer>();
+        output = mathFunctionsImpl.LargestContinuousSum(input);
         LOGGER.debug(String.format("this is the largestContinuousSum %d ", output));
 
     }

@@ -74,8 +74,9 @@ public class MathFunctionsImpl implements MathFunctions {
     /**
      * {@inheritDoc}
      */
-    public int LargestContinuousSum(final ArrayList<Integer> input) {
+    public ArrayList<Integer> LargestContinuousSum(final ArrayList<Integer> input) {
         final HashMap<Integer, Integer> maintainer = new HashMap<Integer, Integer>();
+        final ArrayList<Integer> outputArray = new ArrayList<Integer>();
         int sum = 0;
         int size = 0;
         int maxsum = 0;
@@ -85,6 +86,7 @@ public class MathFunctionsImpl implements MathFunctions {
                 sum += input.get(i);
                 size = size + 1;
                 maintainer.put(1, sum);
+                outputArray.add(sum);
                 maxsum = sum;
                 i++;
             } else if (input.get(i) > input.get(i - 1)) {
@@ -92,15 +94,19 @@ public class MathFunctionsImpl implements MathFunctions {
                 sum += input.get(i);
                 if (sum > maxsum) {
                     maxsum = sum;
+                    outputArray.add(input.get(i));
                     i++;
                 } else {
+                    outputArray.clear();
                     sum = input.get(i);
+                    outputArray.add(input.get(i));
                     i = i - 1;
                 }
             } else {
+                outputArray.clear();
                 sum = 0;
             }
         }
-        return maxsum;
+        return outputArray;
     }
 }
