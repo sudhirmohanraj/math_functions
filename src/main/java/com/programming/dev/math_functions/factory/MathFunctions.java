@@ -17,4 +17,6 @@ public interface MathFunctions {
     public abstract List<String> removeDuplicateMaintainOrder(List<String> arrayWithDuplicates);
 
     public abstract ArrayList<Integer> LargestContinuousSum(ArrayList<Integer> input);
+
+    public abstract int BinarySearch(ArrayList<Integer> sortedArray, int elementToFind);
 }

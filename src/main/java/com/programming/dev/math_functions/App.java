@@ -58,11 +58,18 @@ public class App {
         final ArrayList<Integer> input = new ArrayList<Integer>();
         input.add(1);
         input.add(2);
-        input.add(0);
+        input.add(3);
         input.add(4);
+        input.add(5);
+        input.add(6);
         ArrayList<Integer> output = new ArrayList<Integer>();
         output = mathFunctionsImpl.LargestContinuousSum(input);
-        LOGGER.debug(String.format("this is the largestContinuousSum %d ", output));
 
+        /*
+         * input.clear(); output = mathFunctionsImpl.LargestContinuousSum(input);
+         */
+
+        final int outputResult = mathFunctionsImpl.BinarySearch(input, 7);
+        LOGGER.debug(String.format("the binary search result is %d", outputResult));
     }
 }

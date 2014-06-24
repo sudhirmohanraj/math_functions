@@ -1,7 +1,6 @@
 package com.programming.dev.math_functions.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -75,7 +74,6 @@ public class MathFunctionsImpl implements MathFunctions {
      * {@inheritDoc}
      */
     public ArrayList<Integer> LargestContinuousSum(final ArrayList<Integer> input) {
-        final HashMap<Integer, Integer> maintainer = new HashMap<Integer, Integer>();
         final ArrayList<Integer> outputArray = new ArrayList<Integer>();
         int sum = 0;
         int size = 0;
@@ -85,8 +83,7 @@ public class MathFunctionsImpl implements MathFunctions {
             if (i == 0 || sum == 0) {
                 sum += input.get(i);
                 size = size + 1;
-                maintainer.put(1, sum);
-                outputArray.add(sum);
+                outputArray.add(input.get(i));
                 maxsum = sum;
                 i++;
             } else if (input.get(i) > input.get(i - 1)) {
@@ -103,10 +100,36 @@ public class MathFunctionsImpl implements MathFunctions {
                     i = i - 1;
                 }
             } else {
-                outputArray.clear();
                 sum = 0;
             }
         }
         return outputArray;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int BinarySearch(final ArrayList<Integer> sortedArray, final int elementToFind) {
+        int first = 0;
+        int last = sortedArray.size() - 1;
+        int middle = (sortedArray.size()) / 2;
+
+        while (first <= last) {
+            if (sortedArray.get(middle) < elementToFind) {
+                first = middle + 1;
+            } else if (sortedArray.get(middle) == elementToFind) {
+                System.out.println(elementToFind + " found at location " + (middle + 1) + ".");
+                return 1;
+            } else {
+                last = middle - 1;
+            }
+
+            middle = (first + last) / 2;
+        }
+        if (first > last) {
+            System.out.println(elementToFind + " is not present in the list.\n");
+            return -1;
+        }
+        return 0;
     }
 }
