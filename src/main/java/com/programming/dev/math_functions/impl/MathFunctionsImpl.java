@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.programming.dev.math_functions.factory.MathFunctions;
+import com.programming.dev.math_functions.util.TreeNode;
 
 /**
  * Implementation for {@link MathFunctions}
@@ -131,5 +132,76 @@ public class MathFunctionsImpl implements MathFunctions {
             return -1;
         }
         return 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public ArrayList<Integer> bubbleSort(final ArrayList<Integer> inputArray) {
+        final ArrayList<Integer> outputArray = new ArrayList<Integer>();
+        int temp;
+        for (int i = inputArray.size() - 1; i >= 0; i--) {
+            for (int j = 1; j <= i; j++) {
+                if (inputArray.get(j - 1) > inputArray.get(j)) {
+                    temp = inputArray.get(j - 1);
+                    inputArray.set(j - 1, inputArray.get(j));
+                    inputArray.set(j, temp);
+                }
+            }
+        }
+        return inputArray;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int[] selectionSort(final int[] input) {
+        for (int i = 0; i < input.length - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < input.length; j++) {
+                if (input[j] < input[min]) {
+                    min = j;
+                }
+                final int temp = input[i];
+                input[i] = input[min];
+                input[min] = temp;
+            }
+        }
+        return input;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public TreeNode lowestCommonAncestor(final TreeNode root, final TreeNode right, final TreeNode left) {
+        if (root == null) {
+            return null;
+        }
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Boolean intersectionOfArryays(final int[] inputArray1, final int[] inputArray2) {
+        final HashSet<Integer> firstSet = new HashSet<Integer>();
+        for (int i = 0; i < inputArray1.length; i++) {
+            firstSet.add(inputArray1[i]); // O(N)
+        }
+        for (int i = 0; i < inputArray2.length; i++) {
+            if (firstSet.contains(inputArray2[i])) {
+                return true; // O(N)
+            }
+        }
+        // O(2N) is the average worst case.
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String[] removedDuplicatesInorder(final String input) {
+        final char[] chars = input.toCharArray();
+        return null;
     }
 }

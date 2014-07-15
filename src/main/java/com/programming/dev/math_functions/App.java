@@ -71,5 +71,22 @@ public class App {
 
         final int outputResult = mathFunctionsImpl.BinarySearch(input, 7);
         LOGGER.debug(String.format("the binary search result is %d", outputResult));
+
+        input.clear();
+        input.add(5);
+        input.add(2);
+        input.add(3);
+        input.add(1);
+
+        ArrayList<Integer> outputArray = new ArrayList<Integer>();
+        outputArray = mathFunctionsImpl.bubbleSort(input);
+        LOGGER.debug(String.format("the binary search result is %d", outputResult));
+
+        final int[] inputArray1 = { 3, 2, 1, 4 };
+        mathFunctionsImpl.selectionSort(inputArray1);
+
+        final int[] inputArray2 = { 567, 8, 9, 5, 6 };
+        final Boolean result = mathFunctionsImpl.intersectionOfArryays(inputArray1, inputArray2);
+        LOGGER.debug(String.format("the intersection of the two arrays is %s", result.toString()));
     }
 }

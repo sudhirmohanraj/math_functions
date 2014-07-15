@@ -63,9 +63,27 @@ public class LinkedListImpl {
         size++;
     }
 
-    public void deleteElementAtHead(final Node n) {
+    // Floyd’s Cycle-Finding Algorithm,
+    public boolean isCyclic() {
+        Node fast = head;
+        Node slow = head;
+
+        while (slow != null && fast != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+
+            if (fast == slow) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void deleteElementAtPos(final Node n) {
         if (size == 0) {
             throw new RuntimeException();
+            // or log an error so that the downstream consumers know that this happened and we dont support this.
         } else if (size == 1) {
             head = null;
             tail = null;
@@ -78,15 +96,21 @@ public class LinkedListImpl {
             tail = temp;
             size--;
         } else if (head.data.equals(n.data)) {
-
+            final Node temp = n.getLinkNext();
+            tail.setLinkNext(tail);
+            head.setLinkNext(tail);
+            size--;
         } else {
-            for (int i = 0; i < size; i++) {
+            final Node currentNode = head.getLinkNext();
+            for (int i = 2; i < size; i++) {
+                if (currentNode.getData().equals(n.getData())) {
+                    final Node previous = currentNode.getLinkNext();
+                    final Node next = currentNode.getLinkPrevious();
+                    previous.setLinkNext(next);
+                    next.setLinkPrevious(previous);
+                    size--;
+                }
             }
         }
     }
-
-    public void deleteElementAtPos(final String value) {
-
-    }
-
 }
