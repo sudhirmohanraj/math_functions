@@ -14,6 +14,12 @@ public class TreeNode {
         this.data = data;
     }
 
+    public TreeNode() {
+        right = null;
+        left = null;
+        data = 0;
+    }
+
     public TreeNode getRight() {
         return right;
     }

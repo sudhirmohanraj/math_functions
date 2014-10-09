@@ -2,11 +2,14 @@ package com.programming.dev.math_functions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.programming.dev.math_functions.impl.MathFunctionsImpl;
+import com.programming.dev.math_functions.util.TreeNode;
 
 /**
  * Hello world!
@@ -88,5 +91,88 @@ public class App {
         final int[] inputArray2 = { 567, 8, 9, 5, 6 };
         final Boolean result = mathFunctionsImpl.intersectionOfArryays(inputArray1, inputArray2);
         LOGGER.debug(String.format("the intersection of the two arrays is %s", result.toString()));
+
+        mathFunctionsImpl.nextHighestNumber(12345);
+
+        final TreeNode left1 = new TreeNode();
+        left1.setData(2);
+
+        final TreeNode right1 = new TreeNode();
+        right1.setData(3);
+
+        final TreeNode root = new TreeNode();
+        root.setData(1);
+        root.setRight(right1);
+        root.setLeft(left1);
+        // mathFunctionsImpl.printReverseLevelOrder(root);
+
+        final TreeNode root2 = new TreeNode();
+        root.setData(1);
+        final TreeNode left2 = new TreeNode();
+        left1.setData(3);
+        root.setLeft(left2);
+        final TreeNode left3 = new TreeNode();
+        left3.setData(6);
+        left2.setLeft(left3);
+        final TreeNode right2 = new TreeNode();
+        right1.setData(2);
+        final TreeNode right3 = new TreeNode();
+        right3.setData(4);
+        right2.setRight(right3);
+        root.setRight(right2);
+
+        mathFunctionsImpl.equalityOfBSTNoStructureRelevance(root, root2);
+        mathFunctionsImpl.lowestCommonAncestor(root, right3, left3);
+
+        printString(300);
+
+        mathFunctionsImpl.powerSet("an");
+        final Runnable runnable = new Runnable() {
+
+            public void run() {
+                while (true) {
+
+                }
+
+            }
+        };
+
+        final TimerTask task = new TimerTask() {
+            Timer timer = new Timer();
+
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+
+            }
+        };
+        final int test = Character.getNumericValue('1');
+        // System.out.println(test);
+    }
+
+    static void printString(int k) {
+        final char[] str = new char[20];
+        int i = 0;
+        while (k > 0) {
+            final int rem = k % 26;
+            if (rem == 0) {
+                str[i++] = 25 + 97;
+                k = ((k) / 26) - 1;
+                continue;
+            } else {
+                str[i++] = (char) ((rem - 1) + 97);
+                k = k / 26;
+            }
+            if (k == 0 || (k == 1 && rem == 0)) {
+                break;
+            }
+        }
+        str[i] = '\0';
+        // System.out.println(str);
+
+        final String sudhir = "abcde";
+        final String temp = sudhir.substring(1);
+        final char temp1 = sudhir.charAt(0);
+        System.out.printf("this is the substring", sudhir.substring(1));
     }
 }

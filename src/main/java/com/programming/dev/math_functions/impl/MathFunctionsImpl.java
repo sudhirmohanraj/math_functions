@@ -1,12 +1,18 @@
 package com.programming.dev.math_functions.impl;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.Stack;
+import java.util.Vector;
 
 import com.programming.dev.math_functions.factory.MathFunctions;
 import com.programming.dev.math_functions.util.TreeNode;
+import com.programming.dev.math_functions.util.UtilityClass;
 
 /**
  * Implementation for {@link MathFunctions}
@@ -173,11 +179,59 @@ public class MathFunctionsImpl implements MathFunctions {
     /**
      * {@inheritDoc}
      */
-    public TreeNode lowestCommonAncestor(final TreeNode root, final TreeNode right, final TreeNode left) {
-        if (root == null) {
-            return null;
+    public int lowestCommonAncestor(final TreeNode root, final TreeNode p, final TreeNode q) {
+
+        /*
+         * if (root == null) { return null; } if (root == p || root == q) { return root; } else { final TreeNode l =
+         * lowestCommonAncestor(root.getLeft(), p, q); final TreeNode r = lowestCommonAncestor(root.getRight(), p, q);
+         * if (l != null && r != null) { return root; } else if (l != null) { return l; } else { return r; } }
+         */
+
+        final Vector<Integer> v1 = new Vector<Integer>();
+        final Vector<Integer> v2 = new Vector<Integer>();
+
+        // if (findPath(root, v1, p) || findPath(root, v2, 1)) {
+        // return -1;
+        // }
+
+        int i;
+        for (i = 0; i < v1.size() && i < v2.size(); i++) {
+            if (v1.get(i) != v2.get(i)) {
+                break;
+            }
         }
-        return null;
+        return v1.get(i - 1);
+
+    }
+
+    /**
+     * @param root
+     * @param v2
+     * @param i
+     * @return
+     */
+    private boolean findPath(final TreeNode root, final Vector<Integer> path, final int i) {
+        if (root == null) {
+            return false;
+        }
+        // not in path from root to k
+        path.add(root.getData());
+
+        // See if the k is same as root's key
+        if (root.getData() == i) {
+            return true;
+        }
+
+        // Check if k is found in left or right sub-tree
+        if ((root.getLeft() != null && findPath(root.getLeft(), path, i))
+                || (root.getRight() != null && findPath(root.getRight(), path, i))) {
+            return true;
+        }
+
+        // If not present in subtree rooted with root, remove root from
+        // path[] and return false
+        path.clear();
+        return false;
     }
 
     /**
@@ -203,5 +257,194 @@ public class MathFunctionsImpl implements MathFunctions {
     public String[] removedDuplicatesInorder(final String input) {
         final char[] chars = input.toCharArray();
         return null;
+    }
+
+    public ArrayList<Integer> levelOrderTraversal(final TreeNode treeNode) {
+        if (treeNode == null) {
+            return null;
+        }
+        final ArrayDeque<TreeNode> queue = new ArrayDeque<TreeNode>();
+        TreeNode tempNode = new TreeNode();
+        final ArrayList<Integer> outputList = new ArrayList<Integer>();
+
+        queue.push(treeNode);
+        while (!queue.isEmpty()) {
+            tempNode = queue.pop();
+            outputList.add(tempNode.getData());
+            if (tempNode.getLeft() != null) {
+                queue.push(tempNode.getLeft());
+            } else if (tempNode.getRight() != null) {
+                queue.push(tempNode.getRight());
+            }
+        }
+        return outputList;
+    }
+
+    public ArrayList<Integer> levelOrderTraversalV2(final TreeNode treenode) {
+        final Stack<TreeNode> stack1 = new Stack<TreeNode>();
+        final Stack<TreeNode> stack2 = new Stack<TreeNode>();
+        TreeNode tempNode = new TreeNode();
+        final ArrayList<Integer> outputList = new ArrayList<Integer>();
+
+        if (treenode == null) {
+            return null;
+        }
+        stack1.push(treenode);
+
+        while (!stack1.isEmpty() || !stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
+                tempNode = stack1.pop();
+                outputList.add(tempNode.getData());
+                stack2.push(tempNode.getRight());
+                stack2.push(tempNode.getLeft());
+            }
+            while (!stack2.isEmpty()) {
+                tempNode = stack2.pop();
+                outputList.add(tempNode.getData());
+                stack1.push(tempNode.getLeft());
+                stack1.push(tempNode.getRight());
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String nextHighestNumber(final Integer input) {
+        return null;
+    }
+
+    public ArrayList<Integer> printReverseLevelOrder(final TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        final ArrayList<TreeNode> storage = new ArrayList<TreeNode>();
+        final ArrayList<Integer> reverseLevelOrderNodes = new ArrayList<Integer>();
+        TreeNode tempNode = new TreeNode();
+        storage.add(root);
+        for (int i = 0; i < storage.size(); i++) {
+            tempNode = storage.get(i);
+            if (tempNode.getLeft() != null) {
+                storage.add(tempNode.getLeft());
+            }
+            if (tempNode.getRight() != null) {
+                storage.add(tempNode.getRight());
+            }
+        }
+
+        for (int i = storage.size() - 1; i >= 0; i--) {
+            reverseLevelOrderNodes.add(storage.get(i).getData());
+        }
+        return reverseLevelOrderNodes;
+    }
+
+    public Boolean equalityOfBSTNoStructureRelevance(final TreeNode root1, final TreeNode root2) {
+        final ArrayDeque<TreeNode> queue = new ArrayDeque<TreeNode>();
+        final ArrayDeque<TreeNode> traverseQueue = new ArrayDeque<TreeNode>();
+        final HashMap<Integer, Integer> map = new LinkedHashMap<Integer, Integer>();
+        TreeNode temp = new TreeNode();
+        if (root1 == null && root2 == null) {
+            return true;
+        }
+        queue.push(root1);
+        while (!queue.isEmpty()) {
+            temp = queue.pop();
+            map.put(temp.getData(), temp.getData());
+            if (temp.getLeft() != null) {
+                queue.push(root1.getLeft());
+            }
+            if (temp.getRight() != null) {
+                queue.push(temp.getRight());
+            }
+        }
+        traverseQueue.add(root2);
+        while (!traverseQueue.isEmpty()) {
+            temp = traverseQueue.pop();
+            if (map.containsKey(temp.getData()) != true) {
+                return false;
+            }
+            if (temp.getLeft() != null) {
+                traverseQueue.push(temp);
+            }
+            if (temp.getRight() != null) {
+                traverseQueue.push(temp);
+            }
+
+        }
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void treetoDoublyLinkedList(final TreeNode root, final TreeNode lastNode, TreeNode head) {
+        if (root == null) {
+            return;
+        }
+
+        if (root.getLeft() == null) {
+            treetoDoublyLinkedList(root.getLeft(), lastNode, head);
+        }
+
+        if (lastNode != null) {
+            lastNode.setRight(root);
+        } else {
+            head = root;
+        }
+
+        root.setLeft(lastNode);
+
+        if (root.getRight() != null) {
+            treetoDoublyLinkedList(root.getRight(), lastNode, head);
+        }
+    }
+
+    public void powerSet(final String inputString) {
+        final char[] inputCharArray = inputString.toCharArray();
+
+        final int len = inputCharArray.length;
+        final double powerSetsLength = Math.pow(2, len);
+        int count = 0;
+
+        final char[] outputCharArray = new char[(int) powerSetsLength];
+        while (count < powerSetsLength) {
+            final String binary = UtilityClass.intToBinary(count, len);
+            for (int j = 0; j < binary.length(); j++) {
+                if (binary.charAt(j) == '1') {
+                    System.out.println(inputCharArray[j]);
+                }
+            }
+            count++;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void printAllPaths(final int[][] array, final int currX, final int currY, String path) {
+        final int rowCount = array.length;
+        final int colCount = array[0].length;
+
+        if (currX == rowCount - 1) {
+            for (int j = currY; j <= colCount - 1; j++) {
+                path = path + array[currX][j];
+            }
+            System.out.println("Path : " + path);
+            return;
+        }
+
+        if (currY == colCount - 1) {
+            for (int i = currX; i <= rowCount - 1; i++) {
+                path = path + array[i][currY];
+            }
+            System.out.println("Path : " + path);
+            return;
+        }
+        path = path + array[currX][currY];
+        printAllPaths(array, currX + 1, currY, path);
+        printAllPaths(array, currX, currY + 1, path);
+
     }
 }
