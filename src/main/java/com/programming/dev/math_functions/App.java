@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import com.programming.dev.math_functions.impl.MathFunctionsImpl;
 import com.programming.dev.math_functions.util.TreeNode;
@@ -17,7 +16,6 @@ import com.programming.dev.math_functions.util.TreeNode;
 public class App {
 
     public static void main(final String[] args) {
-        final Logger LOGGER = LoggerFactory.getLogger(App.class);
         final com.programming.dev.math_functions.util.LinkedList linkedList = new com.programming.dev.math_functions.util.LinkedList();
 
         // build linked list
@@ -30,7 +28,6 @@ public class App {
         final MathFunctionsImpl mathFunctionsImpl = new MathFunctionsImpl();
         final Integer middleElement = mathFunctionsImpl.MiddleElementLinkedList(linkedList);
 
-        LOGGER.debug(String.format("this is the middle element %s", middleElement.toString()));
 
         // build an array of numbers
         final java.util.List<Integer> inputArray = new ArrayList<Integer>();
@@ -41,7 +38,6 @@ public class App {
 
         final Long duplicate = mathFunctionsImpl.FindDuplicateInArray(inputArray);
 
-        LOGGER.debug(String.format("this is the duplicate element %s", duplicate));
 
         // reverse a string
         /*
@@ -73,7 +69,6 @@ public class App {
          */
 
         final int outputResult = mathFunctionsImpl.BinarySearch(input, 7);
-        LOGGER.debug(String.format("the binary search result is %d", outputResult));
 
         input.clear();
         input.add(5);
@@ -83,14 +78,14 @@ public class App {
 
         ArrayList<Integer> outputArray = new ArrayList<Integer>();
         outputArray = mathFunctionsImpl.bubbleSort(input);
-        LOGGER.debug(String.format("the binary search result is %d", outputResult));
+
 
         final int[] inputArray1 = { 3, 2, 1, 4 };
         mathFunctionsImpl.selectionSort(inputArray1);
 
         final int[] inputArray2 = { 567, 8, 9, 5, 6 };
         final Boolean result = mathFunctionsImpl.intersectionOfArryays(inputArray1, inputArray2);
-        LOGGER.debug(String.format("the intersection of the two arrays is %s", result.toString()));
+
 
         mathFunctionsImpl.nextHighestNumber(12345);
 
