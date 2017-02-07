@@ -9,7 +9,6 @@ import java.util.Stack;
  */
 public class BalancedExpression {
 
-    // fails with { [}]
     public static boolean isBalanced(String expression) {
         Stack<Character> st = new Stack<Character>();
         Map<Character,Character> braces = new HashMap<Character, Character>();
